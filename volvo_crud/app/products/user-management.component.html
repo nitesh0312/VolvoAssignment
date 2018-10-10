@@ -1,0 +1,67 @@
+<div class="container">
+  <div class="col-md-12">
+    <div *ngIf="!productForm && !editProductForm">
+    <h5>List of Users</h5>
+    <table class="table table-bordered table-striped table-hover">
+    <thead>
+      <tr>
+        <th class="text-center">ID</th>
+        <th class="text-center">Name</th>
+        <th class="text-center">Surname</th>
+        <th class="text-center">Birthdate</th>
+        <th class="text-center">Phone</th>
+        <th class="text-center">City</th>
+        <th class="text-center">Street</th>
+        <th class="text-center">Number</th>
+        <th class="text-center"><button class="btn btn-success"
+          (click)="showAddProductForm()"><i class="fa fa-plus"></i></button> Add New User</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products">
+        <td>{{ product.id }}</td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.surname }}</td>
+        <td>{{ product.birthDate }}</td>
+        <td>{{ product.phone }}</td>
+        <td>{{ product.city }}</td>
+        <td>{{ product.street }}</td>
+        <td>{{ product.number }}</td>
+        <td> <button type="button" class="btn btn-clear buttonvol" (click)="removeProduct(product)">Delete</button></td>
+        <td> <button type="button" class="btn btn-clear buttonvol" (click)="showEditProductForm(product)">Edit</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+  <form *ngIf="productForm">
+    <h5>Add New Product</h5>
+        <p>Id: <input type="text" name="id" [(ngModel)]="newProduct.id" /></p>
+        <p>Name: <input type="text" name="name" [(ngModel)]="newProduct.name" /></p>
+        <p>Surname: <input type="text" name="surname" [(ngModel)]="newProduct.surname" /></p>
+        <p>Birthdate: <input type="text" name="birthDate" [(ngModel)]="newProduct.birthDate" /></p>
+        <p>Phone: <input type="text" name="phone" [(ngModel)]="newProduct.phone" /></p>
+        <p>City: <input type="text" name="city" [(ngModel)]="newProduct.city" /></p>
+        <p>Street: <input type="text" name="street" [(ngModel)]="newProduct.street" /></p>
+        <p>Number: <input type="text" name="number" [(ngModel)]="newProduct.number" /></p>               
+      <p>
+      <button type="button" class="btn btn-primary" (click)="saveProduct(newProduct)">Submit</button>
+      <button type="button" class="btn btn-warning" (click)="cancelNewProduct()">Cancel</button>
+    </p>
+   </form>
+    <form *ngIf="editProductForm">
+    <h5>Edit Product Details</h5>
+        <p>Id: <input type="text" name="id" [(ngModel)]="editedProduct.id" /></p>
+        <p>Name: <input type="text" name="name" [(ngModel)]="editedProduct.name" /></p>
+        <p>Surname: <input type="text" name="surname" [(ngModel)]="editedProduct.surname" /></p>
+        <p>Birthdate: <input type="text" name="birthDate" [(ngModel)]="editedProduct.birthDate" /></p>
+        <p>Phone: <input type="text" name="phone" [(ngModel)]="editedProduct.phone" /></p>
+        <p>City: <input type="text" name="city" [(ngModel)]="editedProduct.city" /></p>
+        <p>Street: <input type="text" name="street" [(ngModel)]="editedProduct.street" /></p>
+    <p>Number: <input type="text" name="number" [(ngModel)]="editedProduct.number" /></p>
+    <p>
+    <button type="button" class="btn btn-primary" (click)="updateProduct(editedProduct)">Submit</button>
+      <button type="button" class="btn btn-warning" (click)="cancelEdits()">Cancel</button>
+    </p>
+   </form>
+  </div>
+</div>
